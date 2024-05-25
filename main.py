@@ -16,6 +16,12 @@ async def app():
   subject_name = st.text_input("Enter subject name:")
   st.text("")
 
+  student_year_level = st.selectbox(
+    "What year level are your students?",
+    ("1st Year", "2nd Year", "3rd Year", "4th Year"),
+    index=None, placeholder="Choose year level")
+  st.text("")
+
   subject_description = st.text_area("Brief description of the subject:")
   st.text("")
 
@@ -42,11 +48,12 @@ async def app():
   st.text("")
   st.text("")
   if st.button("Generate Response"):
-    if subject_name and subject_description and subject_unit:
+    if subject_name and student_year_level and subject_description and subject_unit:
         if advance_options and any(topic.strip() == "" for topic in st.session_state.unit_topics):
             st.error("Fill out all the needed fields.")
         else:
             st.write(f"The name of the subject is: {subject_name}")
+            st.write(f"The student's year level are: {student_year_level}")
             st.write(f"Description: {subject_description}")
             st.write(f"Number of units: {subject_unit}")
 
