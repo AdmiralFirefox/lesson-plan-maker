@@ -60,8 +60,8 @@ async def app():
             if st.session_state.unit_topics:
                 st.write("")
                 st.write("Topics:")
-                for topic in st.session_state.unit_topics:
-                    st.write(topic)
+                for i, topic in enumerate(st.session_state.unit_topics, start=1):
+                    st.write(f"Topic for Unit {i}: {topic}")
     else:
         st.error("Fill out all the needed fields.")
 
