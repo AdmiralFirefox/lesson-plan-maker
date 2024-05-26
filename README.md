@@ -75,7 +75,7 @@ streamlit run main.py
 
 <br />
 
-## Usage Intructions
+## Usage Instructions
 
 ### Filling up information for Course Description
 
