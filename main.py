@@ -1,9 +1,134 @@
 import streamlit as st
+from streamlit_js_eval import streamlit_js_eval
+import google.generativeai as genai
+import os
+from dotenv import load_dotenv
 
-def first_reponse_test():
-   text = "First Reponse"
+load_dotenv() 
 
-   return text
+# Configure API Keys
+genai.configure(api_key=os.getenv("API_KEY"))
+
+# Generate course description prompt for the Gemini API
+def generate_course_description(subject_name, student_year_level, subject_description):
+  prompt = f"""
+    Generate A Course Description 
+
+    The name of the subject is {subject_name}
+
+    The students are {student_year_level} level
+
+    What I want to learn my students for this subject:
+    {subject_description}
+
+    Generate goals/objectives on what the students expect at the end of this course.
+  """
+
+  return prompt
+
+# Generate Unit Description prompt for the Gemini API
+def generate_unit_description(first_prompt, subject_unit, subject_topics):
+   prompt = f"""
+    Based on the following course description:
+    {first_prompt}
+
+    The subject will have {subject_unit} units only.
+
+    The topics for each unit are {subject_topics}
+
+
+    Structure your overall response into the following:
+
+    Course Name: 
+
+    Course Description:
+
+    Course Goals:
+
+    Course Structure:
+
+    Target Audience:
+
+    Unit 1: Topic Title
+    - What are the things that needed to be discussed on this unit?
+    - Create a simple activity to test the student's learning on this unit
+
+    Unit 2: Topic Title
+    - What are the things that needed to be discussed on this unit?
+    - Create a simple activity to test the student's learning on this unit
+
+    And so on. 
+   """
+
+   return prompt
+
+def generate_unit_description_auto(first_prompt, subject_unit):
+   prompt = f"""
+    Based on the following course description:
+    {first_prompt}
+
+    The subject will have {subject_unit} units only.
+
+
+    Structure your overall response into the following:
+
+    Course Name: 
+
+    Course Description:
+
+    Course Goals:
+
+    Course Structure:
+
+    Target Audience:
+
+    Unit 1: Topic Title
+    - What are the things that needed to be discussed on this unit?
+    - Create a simple activity to test the student's learning on this unit
+
+    Unit 2: Topic Title
+    - What are the things that needed to be discussed on this unit?
+    - Create a simple activity to test the student's learning on this unit
+
+    And so on. 
+   """
+
+   return prompt
+
+@st.cache_data
+def generate_first_response(subject_name, student_year_level, subject_description):
+    # Initialize model and its configurations
+    model = genai.GenerativeModel("gemini-1.5-flash")
+    model.temperature = 0.8
+    model.top_k = 20
+    model.top_p = 0.7
+    model.max_output_tokens = 500
+
+    # Provide a prompt for generation
+    prompt = generate_course_description(subject_name, student_year_level, subject_description)
+
+    # Generate content
+    response = model.generate_content([prompt])
+
+    return response.text
+
+@st.cache_data
+def generate_second_response(specify_topics, first_prompt, subject_unit, subject_topics):
+    # Initialize model and its configurations
+    model = genai.GenerativeModel("gemini-1.5-flash")
+    model.temperature = 0.8
+    model.top_k = 20
+    model.top_p = 0.7
+    model.max_output_tokens = 1000
+
+    # Provide a prompt for generation
+    prompt = generate_unit_description(first_prompt, subject_unit, subject_topics) if specify_topics else  generate_unit_description_auto(first_prompt, subject_unit)
+
+    # Generate content
+    response = model.generate_content([prompt])
+
+    return response.text
+
 
 async def app():
   # Initialize states
@@ -44,18 +169,18 @@ async def app():
   
   st.text("")
   if st.session_state.generate_first_prompt:
-    response = first_reponse_test()
-    st.write(response)
+    first_response = generate_first_response(subject_name, student_year_level, subject_description)
+    st.write(first_response)
 
     # After the first prompt has been generated
-    if response:
+    if first_response:
       st.text("")
       st.text("")
       subject_unit = st.slider("How many units does your subject have?", 1, 10, 3)
 
       # Inputs for Unit Description
       st.text("")
-      specify_topics = st.checkbox("Specify Topics")
+      specify_topics = st.checkbox("Specify Topics (topics will be auto-generated if leaved unchecked)")
       if specify_topics:
           unit_topics = []
           for i in range(1, subject_unit + 1):
@@ -78,19 +203,16 @@ async def app():
             if specify_topics and any(topic.strip() == "" for topic in st.session_state.unit_topics):
                 st.error("Fill out all the needed fields.")
             else:
-                st.write(f"The name of the subject is: {subject_name}")
-                st.write(f"The student's year level are: {student_year_level}")
-                st.write(f"Description: {subject_description}")
-                st.write(f"Number of units: {subject_unit}")
-
-                if st.session_state.unit_topics:
-                    st.write("")
-                    st.write("Topics:")
-                    for i, topic in enumerate(st.session_state.unit_topics, start=1):
-                        st.write(f"Topic for Unit {i}: {topic}")
+                second_response = generate_second_response(specify_topics, first_response, subject_unit, ", ".join(st.session_state.unit_topics))
+                st.write(second_response)
         else:
             st.error("Fill out all the needed fields.")
     
+    st.write("")
+    if st.button("Clear All and Generate Another"):
+        st.cache_data.clear()
+        streamlit_js_eval(js_expressions="parent.window.location.reload()")
+
 
 #run the app
 if __name__ == "__main__":
