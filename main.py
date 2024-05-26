@@ -122,6 +122,7 @@ def generate_second_response(specify_topics, first_prompt, subject_unit, subject
     model.max_output_tokens = 1000
 
     # Provide a prompt for generation
+    # If specify_topics was not enabled, provide a prompt that auto-generates topics
     prompt = generate_unit_description(first_prompt, subject_unit, subject_topics) if specify_topics else  generate_unit_description_auto(first_prompt, subject_unit)
 
     # Generate content
@@ -160,7 +161,7 @@ async def app():
   subject_description = st.text_area("What do you want your students to learn on this subject:")
   st.text("")
         
-  # Generate Course Description
+  # Check if first prompt is generated
   st.text("")
   if st.button("Generate Course Description"):
     if subject_name and student_year_level and subject_description:
