@@ -63,7 +63,7 @@ streamlit run main.py
 
 <br />
 
-### Specifying Number of Units
+### Specifying number of units
 
 <img src="https://github.com/AdmiralFirefox/lesson-plan-maker/assets/79429518/dc7d0f65-181f-47d4-8717-e522f398358a" alt="" width="100%" height="100%" />
 
@@ -72,7 +72,7 @@ streamlit run main.py
 
 <br />
 
-### Filling up a topic for each unit
+### Filling up the topic for each unit
 
 <img src="https://github.com/AdmiralFirefox/lesson-plan-maker/assets/79429518/09bb83b2-4eb6-4fb8-9244-3a67be05d12d" alt="" width="100%" height="100%" />
 
@@ -87,5 +87,7 @@ streamlit run main.py
 <img src="https://github.com/AdmiralFirefox/lesson-plan-maker/assets/79429518/bd5f0882-993a-47fc-bee1-a87a84614318" alt="" width="100%" height="100%" />
 
 - If you want to generate another lesson plan, scroll down to the bottom of the generated lesson plan and click the Clear All and Generate Another button.
+
+<br />
 
 
