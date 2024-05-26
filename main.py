@@ -138,10 +138,12 @@ async def app():
   if "generate_first_prompt" not in st.session_state:
      st.session_state.generate_first_prompt = False
 
-  st.title("Lesson Plan Maker")
-  st.write("Developed by: James Joseph L. Cuadra, BSCS 3B AI")
+  st.title("Lesson Plan Maker for College Professors")
+  st.markdown("**Developed by: James Joseph L. Cuadra, BSCS 3B AI**")
   st.text("")
-  st.write("This is a lesson plan maker")
+  st.markdown("""
+    This project is designed to streamline and enhance the educational experience by leveraging the powerful capabilities of the Gemini API. This project aims to automate the creation of comprehensive and customizable lesson plans, tailored specifically for college-level courses across various disciplines. By integrating the powerful capabilities of the Gemini API, the system can analyze course objectives, learning outcomes, and available resources to generate detailed lesson plans that include lectures, assignments, and assessments. Professors can easily modify and personalize these plans to fit their teaching style and specific course requirements. This not only saves valuable time but also ensures that the educational content is structured, coherent, and aligned with academic standards. The Lesson Plan Maker supports educators in delivering high-quality and effective instruction, contributing to an enriched learning experience for students.
+  """)
   st.text("")
   st.text("")
 
