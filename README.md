@@ -6,9 +6,13 @@ This project utilizes Gemini API and deployed to streamlit. You can view the liv
 
 <br />
 
-<div style="text-align: center; font-weight: 600;">
-<a href="https://leappn-plan-maker-vs69gwzhrwzcwtfpyansry.streamlit.app/">You can view the live site here »</a>
-<p>Note: Please ensure fair usage of the prompts. I don't have much tokens left from the Gemini API 😅</p>
+<div align="center">
+    <strong>
+        <p><a href="https://leappn-plan-maker-vs69gwzhrwzcwtfpyansry.streamlit.app/">You can view the live site here »</a></p>
+    </strong>
+    <strong>
+        <p>Note: Please ensure fair usage of the prompts. I don't have much tokens left from the Gemini API 😅</p>
+    </strong>
 </div>
 
 <br />
