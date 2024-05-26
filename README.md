@@ -27,7 +27,7 @@ https://github.com/AdmiralFirefox/lesson-plan-maker/assets/79429518/554b8df9-8a2
 
 Clone the project
 ```bash
-https://github.com/AdmiralFirefox/lesson-plan-maker.git
+git clone https://github.com/AdmiralFirefox/lesson-plan-maker.git
 ```
 
 <br />
