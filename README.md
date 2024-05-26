@@ -32,10 +32,23 @@ git clone https://github.com/AdmiralFirefox/lesson-plan-maker.git
 
 <br />
 
+Create a virtual environment
+```bash
+python -m venv streamlit-env
+```
+<br />
+
+Activate virtual environment
+```bash
+streamlit-env/Scripts/activate
+```
+<br />
+
 Install python packages
 ```bash
 pip install -r requirements.txt
 ```
+**Note: Make sure your virtual environment is activated when installing the packages**
 
 <br />
 
