@@ -36,7 +36,7 @@ streamlit run main.py
 <br />
 
 ## Functionalities
-* Generates course description that provides a foundational overview of the entire course, including its goals and objectives.
+* Generates a course description that provides a foundational overview of the entire course, including its goals and objectives.
 * You can specify the number of Units you want to have on the created course. You can specify up to the limit of 10.
 * You can specify on what will be the topic on each unit. If you don't want to specify the topic, the topics will be auto-generated. 
 * A detailed lesson plan is generated based on the course description and the number of units and their topics prompted by the user. A lesson plan is structured on the following:
@@ -44,10 +44,10 @@ streamlit run main.py
   - Course Description 
   - Course Goals/Objectives (What would students expect when completing the course)
   - Course Structure
-  - Targe Audience
+  - Target Audience
   - Unit Number: Topic Title
-    - Things that needed to be discussed on this unit
-    - A simple activity to assess the student's learning on this unit
+    - Things that needed to be discussed on this unit.
+    - A simple activity to assess the student's learning on this unit.
 
 <br />
 
