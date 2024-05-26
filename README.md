@@ -2,7 +2,14 @@
 
 This project is designed to streamline and enhance the educational experience by leveraging the powerful capabilities of the Gemini API. This project aims to automate the creation of comprehensive and customizable lesson plans, tailored specifically for college-level courses across various disciplines. By integrating the powerful capabilities of the Gemini API, the system can analyze course objectives, learning outcomes, and available resources to generate detailed lesson plans that include lectures, assignments, and assessments. Professors can easily modify and personalize these plans to fit their teaching style and specific course requirements. This not only saves valuable time but also ensures that the educational content is structured, coherent, and aligned with academic standards. The Lesson Plan Maker supports educators in delivering high-quality and effective instruction, contributing to an enriched learning experience for students.
 
-This project utilizes Gemini API and deployed to streamlit.
+This project utilizes Gemini API and deployed to streamlit. You can view the live site here:
+
+<br />
+
+<div style="text-align: center; font-weight: 600;">
+<a href="https://leappn-plan-maker-vs69gwzhrwzcwtfpyansry.streamlit.app/">You can view the live site here »</a>
+<p>Note: Please ensure fair usage of the prompts. I don't have much tokens left from the Gemini API 😅</p>
+</div>
 
 <br />
 
